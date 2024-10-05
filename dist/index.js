@@ -11,18 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-function updateUser(username_1, _a) {
-    return __awaiter(this, arguments, void 0, function* (username, { firstname, lastname }) {
-        const response = yield prisma.user.update({
+function getUser(username) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield prisma.user.findUnique({
             where: {
                 username
-            },
-            data: {
-                firstname,
-                lastname
-            },
+            }
         });
         console.log(response);
     });
 }
-updateUser('aryansharma', { firstname: 'sharma', lastname: 'aryan' });
+getUser('aryansharma');
